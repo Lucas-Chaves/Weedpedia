@@ -4,7 +4,6 @@ import 'package:maripedia/views/view.dart';
 
 import '../utils/utils.dart';
 import '../cubit/cubit.dart';
-import '../models/models.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,15 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Marijuana mari = Marijuana(
-      id: 1,
-      name: "Prensado",
-      flavors: ["chocolate"],
-      medical: ["Panca"],
-      negative: ["Teto Preto"],
-      positive: ["Acalma"],
-      race: "Hybrida");
-
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
@@ -56,7 +46,9 @@ class _HomePageState extends State<HomePage> {
               );
             } else if (state is HomeGenericErrorState) {
               return Container(
-                child: Text("FUDEUUUUUUUUUUU"),
+                child: Center(
+                  child: Text("Load weed error, try again later !"),
+                ),
               );
             }
           }),
