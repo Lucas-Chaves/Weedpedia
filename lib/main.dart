@@ -16,9 +16,9 @@ void main(List<String> args) {
             SplashInitialState(),
           ),
         ),
-        BlocProvider<HomeCubit>(
-          create: (BuildContext context) => HomeCubit(
-            state: HomeInitialState(),
+        BlocProvider<WeedsCubit>(
+          create: (BuildContext context) => WeedsCubit(
+            state: WeedsInitialState(),
             apiImpl: apiImpl,
           ),
         ),

@@ -5,19 +5,19 @@ import 'package:maripedia/views/view.dart';
 import '../utils/utils.dart';
 import '../cubit/cubit.dart';
 
-class HomePage extends StatefulWidget {
+class WeedsPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WeedsPageState createState() => _WeedsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WeedsPageState extends State<WeedsPage> {
   @override
   Widget build(BuildContext context) {
-    HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+    WeedsCubit weedsCubit = BlocProvider.of<WeedsCubit>(context);
 
-    return BlocBuilder<HomeCubit, HomeStates>(
-        cubit: homeCubit,
-        builder: (BuildContext context, HomeStates state) {
+    return BlocBuilder<WeedsCubit, WeedsStates>(
+        cubit: weedsCubit,
+        builder: (BuildContext context, WeedsStates state) {
           return Scaffold(
             appBar: AppBar(
               backgroundColor: appBarColor,
@@ -29,51 +29,52 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black,
               onRefresh: () {
                 return Future.value(
-                  homeCubit.getAllStraintRefresh(),
+                  weedsCubit.getAllStraintRefresh(),
                 );
               },
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Builder(
-                  builder: (context) {
-                    if (state is HomePullRefreshState) {
-                      return Container();
-                    }
-                    if (state is HomeInitialState) {
-                      homeCubit.getAllStraint();
-                      return Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.black87),
+              child: Builder(
+                builder: (context) {
+                  if (state is WeedsPullRefreshState) {
+                    return ListView();
+                  }
+                  if (state is WeedsInitialState) {
+                    weedsCubit.getAllStraint();
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.black87),
+                      ),
+                    );
+                  } else if (state is WeedsLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.black87),
+                      ),
+                    );
+                  } else if (state is WeedsStraintInitialState) {
+                    return ListView.builder(
+                      itemCount: state.strains.length,
+                      itemBuilder: (context, index) {
+                        return ButtonWeed(marijuana: state.strains[index]);
+                      },
+                    );
+                  } else if (state is WeedsGenericErrorState) {
+                    return ListView(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          child: Center(
+                            child: Text("Load weed error, try again later !"),
+                          ),
                         ),
-                      );
-                    } else if (state is HomeLoadingState) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.black87),
-                        ),
-                      );
-                    } else if (state is HomeStraintInitialState) {
-                      return ListView.builder(
-                        itemCount: state.strains.length,
-                        itemBuilder: (context, index) {
-                          return ButtonWeed(marijuana: state.strains[index]);
-                        },
-                      );
-                    } else if (state is HomeGenericErrorState) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        child: Center(
-                          child: Text("Load weed error, try again later !"),
-                        ),
-                      );
-                    } else {
-                      return Container();
-                    }
-                  },
-                ),
+                      ],
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
             ),
           );
@@ -81,10 +82,10 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// class _HomePageState extends State<HomePage> {
+// class _WeedsPageState extends State<WeedsPage> {
 //   @override
 //   Widget build(BuildContext context) {
-//     HomeCubit homeCubit = BlocProvider.of<HomeCubit>(context);
+//     WeedsCubit WeedsCubit = BlocProvider.of<WeedsCubit>(context);
 
 //     return Scaffold(
 //       appBar: AppBar(
@@ -92,30 +93,30 @@ class _HomePageState extends State<HomePage> {
 //         centerTitle: true,
 //         title: Text("Weeds"),
 //       ),
-//       body: BlocBuilder<HomeCubit, HomeStates>(
-//           cubit: homeCubit,
-//           builder: (BuildContext context, HomeStates state) {
-//             if (state is HomeInitialState) {
-//               homeCubit.getAllStraint();
+//       body: BlocBuilder<WeedsCubit, WeedsStates>(
+//           cubit: WeedsCubit,
+//           builder: (BuildContext context, WeedsStates state) {
+//             if (state is WeedsInitialState) {
+//               WeedsCubit.getAllStraint();
 //               return Center(
 //                 child: CircularProgressIndicator(
 //                   valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
 //                 ),
 //               );
-//             } else if (state is HomeLoadingState) {
+//             } else if (state is WeedsLoadingState) {
 //               return Center(
 //                 child: CircularProgressIndicator(
 //                   valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
 //                 ),
 //               );
-//             } else if (state is HomeStraintInitialState) {
+//             } else if (state is WeedsStraintInitialState) {
 //               return ListView.builder(
 //                 itemCount: state.strains.length,
 //                 itemBuilder: (context, index) {
 //                   return ButtonWeed(marijuana: state.strains[index]);
 //                 },
 //               );
-//             } else if (state is HomeGenericErrorState) {
+//             } else if (state is WeedsGenericErrorState) {
 //               return Container(
 //                 child: Center(
 //                   child: Text("Load weed error, try again later !"),

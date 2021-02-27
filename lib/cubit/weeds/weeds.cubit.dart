@@ -3,32 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/models.dart';
 import '../../../repositories/repositories.dart';
 
-import 'home.states.dart';
+import 'weeds.states.dart';
 
-class HomeCubit extends Cubit<HomeStates> {
+class WeedsCubit extends Cubit<WeedsStates> {
   final StrainApiImpl apiImpl;
-  HomeCubit({
-    HomeStates state,
+  WeedsCubit({
+    WeedsStates state,
     this.apiImpl,
-  }) : super(HomeInitialState());
+  }) : super(WeedsInitialState());
 
   getAllStraint() async {
     try {
-      emit(HomeLoadingState());
+      emit(WeedsLoadingState());
       List<Marijuana> strains = await apiImpl.getAllStrains();
-      emit(HomeStraintInitialState(strains: strains));
+      emit(WeedsStraintInitialState(strains: strains));
     } catch (e) {
-      emit(HomeGenericErrorState());
+      emit(WeedsGenericErrorState());
     }
   }
 
   getAllStraintRefresh() async {
     try {
-      emit(HomePullRefreshState());
+      emit(WeedsPullRefreshState());
       List<Marijuana> strains = await apiImpl.getAllStrains();
-      emit(HomeStraintInitialState(strains: strains));
+      emit(WeedsStraintInitialState(strains: strains));
     } catch (e) {
-      emit(HomeGenericErrorState());
+      emit(WeedsGenericErrorState());
     }
   }
 }
