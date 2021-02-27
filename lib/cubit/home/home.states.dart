@@ -22,6 +22,13 @@ class HomeLoadingState extends HomeStates {
   List<Object> get props => [];
 }
 
+class HomePullRefreshState extends HomeStates {
+  const HomePullRefreshState();
+
+  @override
+  List<Object> get props => [];
+}
+
 class HomeSuccessState extends HomeStates {
   const HomeSuccessState();
 

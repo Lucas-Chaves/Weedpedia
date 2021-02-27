@@ -21,4 +21,14 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(HomeGenericErrorState());
     }
   }
+
+  getAllStraintRefresh() async {
+    try {
+      emit(HomePullRefreshState());
+      List<Marijuana> strains = await apiImpl.getAllStrains();
+      emit(HomeStraintInitialState(strains: strains));
+    } catch (e) {
+      emit(HomeGenericErrorState());
+    }
+  }
 }
