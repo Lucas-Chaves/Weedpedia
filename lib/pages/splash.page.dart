@@ -22,7 +22,7 @@ class SplashPage extends StatelessWidget {
             return SplashView();
           } else if (state is SplashLoadedState) {
             Future.delayed(Duration.zero, () {
-              Navigator.pushReplacement(context, createRoute(HomePage()));
+              Navigator.pushReplacement(context, createRoute(InitialPage()));
             });
             return Container();
           }
