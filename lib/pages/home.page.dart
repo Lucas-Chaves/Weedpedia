@@ -35,14 +35,31 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, HomeStates state) {
             if (state is HomeInitialState) {
               homeCubit.getAllStraint();
-              return Container();
-            }
-            if (state is HomeLoadingState) {
-              return CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
+                ),
               );
-            } else {
-              return Container();
+            } else if (state is HomeLoadingState) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black87),
+                ),
+              );
+            } else if (state is HomeStraintInitialState) {
+              return ListView.builder(
+                itemCount: state.strains.length,
+                itemBuilder: (context, index) {
+                  return Text(
+                    '${state.strains[index].name}',
+                    textAlign: TextAlign.center,
+                  );
+                },
+              );
+            } else if (state is HomeGenericErrorState) {
+              return Container(
+                child: Text("FUDEUUUUUUUUUUU"),
+              );
             }
           }),
     );
