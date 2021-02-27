@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maripedia/views/view.dart';
 
 import '../utils/utils.dart';
 import '../cubit/cubit.dart';
@@ -50,10 +51,7 @@ class _HomePageState extends State<HomePage> {
               return ListView.builder(
                 itemCount: state.strains.length,
                 itemBuilder: (context, index) {
-                  return Text(
-                    '${state.strains[index].name}',
-                    textAlign: TextAlign.center,
-                  );
+                  return ButtonWeed(marijuana: state.strains[index]);
                 },
               );
             } else if (state is HomeGenericErrorState) {

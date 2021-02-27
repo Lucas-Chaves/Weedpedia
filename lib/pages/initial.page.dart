@@ -62,31 +62,6 @@ class InitialPage extends StatelessWidget {
         'desc': 'List all Weeds',
         'route': HomePage(),
       },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
     ];
 
     Widget buttonWidget(Map<String, dynamic> map) {
