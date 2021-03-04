@@ -10,57 +10,7 @@ class InitialPage extends StatelessWidget {
       {
         'title': 'Weeds',
         'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
-      },
-      {
-        'title': 'Weeds',
-        'desc': 'List all Weeds',
-        'route': HomePage(),
+        'route': WeedsPage(),
       },
     ];
 
